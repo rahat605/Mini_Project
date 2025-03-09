@@ -1,26 +1,47 @@
-let todo = [];
-let req = prompt("Please enter your request");
-while(true){
-    if (req == "quit"){
-        console.log("Quiting app");
-        break;
+let input = document.querySelector("input");
+let btn = document.querySelector("button");
+let ul = document.querySelector("ul");
+
+// for mouse key 
+btn.addEventListener("click",function(){
+    let item = document.createElement("li");
+    item.innerText = input.value;
+
+    let delBtn = document.createElement("button");
+    delBtn.innerText = "Delete";
+    item.appendChild(delBtn);
+
+    ul.appendChild(item);
+    input.value="";
+});
+
+// For keyboard enter key 
+input.addEventListener("keydown",function(e){
+    if(e.key == "Enter"){
+        let item = document.createElement("li");
+        item.innerText = input.value;
+        
+        let delBtn = document.createElement("button");
+        delBtn.innerText = "Delete";
+        item.appendChild(delBtn);
+
+        ul.appendChild(item);
+        input.value="";
     }
-    if(req == "list"){
-        console.log("-----------------");
-        for(let i=0; i<todo.length;i++){
-            console.log(i,todo[i]);
-        }console.log("-----------------");
-    }
-    else if(req == "add"){
-        let task = prompt("Please enter the task you want to enter");
-        todo.push(task);
-        console.log("Task added");
-    }else if(req == "delete"){
-        let idx = prompt("Please enter the index you want to delete");
-        todo.splice(idx,1);
-        console.log("Task Deleted!!");
-    }else{
-        console.log("Invalid Request");
-    }
-    req = prompt("Please enter your request");
-}
+});
+
+// Not working for new entry Only for existing entries
+// let delBtns = document.querySelectorAll("#delete");
+// for(delBtn of delBtns){
+//     delBtn.addEventListener("click",function(){
+//         let par = this.parentElement;
+//         par.remove();
+//     })
+// }
+
+ul.addEventListener("click", function(e){
+    if(e.target.nodeName == "BUTTON"){
+       let listItem = e.target.parentElement;
+        listItem.remove();
+    };
+});
