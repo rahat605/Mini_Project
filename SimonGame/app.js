@@ -35,7 +35,7 @@ function levelUp() {
   level++;
   if(level > highLevel){
     highLevel++;
-    h3.innerText = `Highest Score : ${highLevel}`;
+    h3.innerText = `Highest Score : ${highLevel-1}`;
   }
   h2.innerText = `Level ${level}`;
   let randIdx = Math.floor(Math.random() * 3);
@@ -51,7 +51,7 @@ function checkAns(idx) {
       setTimeout(levelUp(), 1000);
     }
   } else {
-    h2.innerText = `Game Over\n Your Score: ${level} \n Press any key to play again`;
+    h2.innerText = `Game Over\n Your Score: ${level-1} \n Press any key to play again`;
     document.querySelector("body").style.backgroundColor = "red";
     setTimeout(function () {
       document.querySelector("body").style.backgroundColor = "white";
